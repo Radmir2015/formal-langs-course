@@ -1,0 +1,5 @@
+printf("Hello world!");
+abc = 0x15ac;
+printf(abc);
+printf(0x23bc+abc);
+

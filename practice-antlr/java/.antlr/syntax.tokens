@@ -1,0 +1,16 @@
+NOT=1
+AND=2
+OR=3
+XOR=4
+PRINT=5
+ID=6
+INT=7
+WS=8
+LPAR=9
+RPAR=10
+ASSIGN=11
+COL=12
+'('=9
+')'=10
+':='=11
+';'=12

@@ -1,0 +1,11 @@
+x := 1;
+y := not y;
+print y;
+z := (x or y) and not 0;
+print z;
+
+print 1 xor 0;
+print (1 xor ((1 or 1 xor 0 and 1)));
+print not 1 xor 0 and 1;
+print (not 1 xor 0) and 1;
+print not (1 xor 0) and 1;

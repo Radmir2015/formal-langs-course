@@ -1,0 +1,16 @@
+#define SEMICOLON 1
+#define BECOMES 2
+#define PLUS 3
+#define MINUS 4
+#define TIMES 5
+#define SLASH 6
+#define LPAR 7
+#define RPAR 8
+#define HEXNUM 9
+#define IDENT 10
+#define UNKNOWN 11
+#define QUOTE 12
+#define QUEST 13
+#define EXCLAM 14
+#define COMMA 15
+#define PRINTF 16

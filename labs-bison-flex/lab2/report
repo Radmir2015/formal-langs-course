@@ -1,0 +1,450 @@
+Терминалы не используются в грамматике
+
+   UNKNOWN
+   COMMA
+   EXCLAM
+   QUEST
+
+
+Состояние 18 конфликты: 1 сдвига/вывода
+Состояние 19 конфликты: 1 сдвига/вывода
+
+
+Грамматика
+
+    0 $accept: program $end
+
+    1 program: statement
+    2        | program statement
+
+    3 statement: expr SEMICOLON
+    4          | print_statement SEMICOLON
+
+    5 expr: IDENT BECOMES expr_cmp
+
+    6 expr_cmp: prim_expr PLUS prim_expr
+    7         | prim_expr MINUS prim_expr
+    8         | prim_expr TIMES prim_expr
+    9         | prim_expr SLASH prim_expr
+   10         | prim_expr
+
+   11 prim_expr: IDENT
+   12          | HEXNUM
+   13          | LPAR expr_cmp RPAR
+
+   14 print_statement: PRINTF LPAR LITERAL RPAR
+   15                | PRINTF LPAR HEXNUM RPAR
+   16                | PRINTF LPAR expr_cmp RPAR
+   17                | PRINTF LPAR IDENT RPAR
+
+
+Терминальные символы с правилами, в которых они появляются
+
+$end (0) 0
+error (256)
+SEMICOLON (258) 3 4
+BECOMES (259) 5
+PLUS (260) 6
+MINUS (261) 7
+TIMES (262) 8
+SLASH (263) 9
+LPAR (264) 13 14 15 16 17
+RPAR (265) 13 14 15 16 17
+HEXNUM (266) 12 15
+IDENT (267) 5 11 17
+UNKNOWN (268)
+LITERAL (269) 14
+COMMA (270)
+EXCLAM (271)
+QUEST (272)
+PRINTF (273) 14 15 16 17
+
+
+Нетерминальные символы с правилами, в которых они появляются
+
+$accept (19)
+    налево: 0
+program (20)
+    налево: 1 2, направо: 0 2
+statement (21)
+    налево: 3 4, направо: 1 2
+expr (22)
+    налево: 5, направо: 3
+expr_cmp (23)
+    налево: 6 7 8 9 10, направо: 5 13 16
+prim_expr (24)
+    налево: 11 12 13, направо: 6 7 8 9 10
+print_statement (25)
+    налево: 14 15 16 17, направо: 4
+
+
+Состояние 0
+
+    0 $accept: . program $end
+    1 program: . statement
+    2        | . program statement
+    3 statement: . expr SEMICOLON
+    4          | . print_statement SEMICOLON
+    5 expr: . IDENT BECOMES expr_cmp
+   14 print_statement: . PRINTF LPAR LITERAL RPAR
+   15                | . PRINTF LPAR HEXNUM RPAR
+   16                | . PRINTF LPAR expr_cmp RPAR
+   17                | . PRINTF LPAR IDENT RPAR
+
+    IDENT   сдвиг, и переход в состояние 1
+    PRINTF  сдвиг, и переход в состояние 2
+
+    program          переход в состояние 3
+    statement        переход в состояние 4
+    expr             переход в состояние 5
+    print_statement  переход в состояние 6
+
+
+Состояние 1
+
+    5 expr: IDENT . BECOMES expr_cmp
+
+    BECOMES  сдвиг, и переход в состояние 7
+
+
+Состояние 2
+
+   14 print_statement: PRINTF . LPAR LITERAL RPAR
+   15                | PRINTF . LPAR HEXNUM RPAR
+   16                | PRINTF . LPAR expr_cmp RPAR
+   17                | PRINTF . LPAR IDENT RPAR
+
+    LPAR  сдвиг, и переход в состояние 8
+
+
+Состояние 3
+
+    0 $accept: program . $end
+    2 program: program . statement
+    3 statement: . expr SEMICOLON
+    4          | . print_statement SEMICOLON
+    5 expr: . IDENT BECOMES expr_cmp
+   14 print_statement: . PRINTF LPAR LITERAL RPAR
+   15                | . PRINTF LPAR HEXNUM RPAR
+   16                | . PRINTF LPAR expr_cmp RPAR
+   17                | . PRINTF LPAR IDENT RPAR
+
+    $end    сдвиг, и переход в состояние 9
+    IDENT   сдвиг, и переход в состояние 1
+    PRINTF  сдвиг, и переход в состояние 2
+
+    statement        переход в состояние 10
+    expr             переход в состояние 5
+    print_statement  переход в состояние 6
+
+
+Состояние 4
+
+    1 program: statement .
+
+    $default  вывод с использованием правила 1 (program)
+
+
+Состояние 5
+
+    3 statement: expr . SEMICOLON
+
+    SEMICOLON  сдвиг, и переход в состояние 11
+
+
+Состояние 6
+
+    4 statement: print_statement . SEMICOLON
+
+    SEMICOLON  сдвиг, и переход в состояние 12
+
+
+Состояние 7
+
+    5 expr: IDENT BECOMES . expr_cmp
+    6 expr_cmp: . prim_expr PLUS prim_expr
+    7         | . prim_expr MINUS prim_expr
+    8         | . prim_expr TIMES prim_expr
+    9         | . prim_expr SLASH prim_expr
+   10         | . prim_expr
+   11 prim_expr: . IDENT
+   12          | . HEXNUM
+   13          | . LPAR expr_cmp RPAR
+
+    LPAR    сдвиг, и переход в состояние 13
+    HEXNUM  сдвиг, и переход в состояние 14
+    IDENT   сдвиг, и переход в состояние 15
+
+    expr_cmp   переход в состояние 16
+    prim_expr  переход в состояние 17
+
+
+Состояние 8
+
+    6 expr_cmp: . prim_expr PLUS prim_expr
+    7         | . prim_expr MINUS prim_expr
+    8         | . prim_expr TIMES prim_expr
+    9         | . prim_expr SLASH prim_expr
+   10         | . prim_expr
+   11 prim_expr: . IDENT
+   12          | . HEXNUM
+   13          | . LPAR expr_cmp RPAR
+   14 print_statement: PRINTF LPAR . LITERAL RPAR
+   15                | PRINTF LPAR . HEXNUM RPAR
+   16                | PRINTF LPAR . expr_cmp RPAR
+   17                | PRINTF LPAR . IDENT RPAR
+
+    LPAR     сдвиг, и переход в состояние 13
+    HEXNUM   сдвиг, и переход в состояние 18
+    IDENT    сдвиг, и переход в состояние 19
+    LITERAL  сдвиг, и переход в состояние 20
+
+    expr_cmp   переход в состояние 21
+    prim_expr  переход в состояние 17
+
+
+Состояние 9
+
+    0 $accept: program $end .
+
+    $default  принять
+
+
+Состояние 10
+
+    2 program: program statement .
+
+    $default  вывод с использованием правила 2 (program)
+
+
+Состояние 11
+
+    3 statement: expr SEMICOLON .
+
+    $default  вывод с использованием правила 3 (statement)
+
+
+Состояние 12
+
+    4 statement: print_statement SEMICOLON .
+
+    $default  вывод с использованием правила 4 (statement)
+
+
+Состояние 13
+
+    6 expr_cmp: . prim_expr PLUS prim_expr
+    7         | . prim_expr MINUS prim_expr
+    8         | . prim_expr TIMES prim_expr
+    9         | . prim_expr SLASH prim_expr
+   10         | . prim_expr
+   11 prim_expr: . IDENT
+   12          | . HEXNUM
+   13          | . LPAR expr_cmp RPAR
+   13          | LPAR . expr_cmp RPAR
+
+    LPAR    сдвиг, и переход в состояние 13
+    HEXNUM  сдвиг, и переход в состояние 14
+    IDENT   сдвиг, и переход в состояние 15
+
+    expr_cmp   переход в состояние 22
+    prim_expr  переход в состояние 17
+
+
+Состояние 14
+
+   12 prim_expr: HEXNUM .
+
+    $default  вывод с использованием правила 12 (prim_expr)
+
+
+Состояние 15
+
+   11 prim_expr: IDENT .
+
+    $default  вывод с использованием правила 11 (prim_expr)
+
+
+Состояние 16
+
+    5 expr: IDENT BECOMES expr_cmp .
+
+    $default  вывод с использованием правила 5 (expr)
+
+
+Состояние 17
+
+    6 expr_cmp: prim_expr . PLUS prim_expr
+    7         | prim_expr . MINUS prim_expr
+    8         | prim_expr . TIMES prim_expr
+    9         | prim_expr . SLASH prim_expr
+   10         | prim_expr .  [SEMICOLON, RPAR]
+
+    PLUS   сдвиг, и переход в состояние 23
+    MINUS  сдвиг, и переход в состояние 24
+    TIMES  сдвиг, и переход в состояние 25
+    SLASH  сдвиг, и переход в состояние 26
+
+    $default  вывод с использованием правила 10 (expr_cmp)
+
+
+Состояние 18
+
+   12 prim_expr: HEXNUM .  [PLUS, MINUS, TIMES, SLASH, RPAR]
+   15 print_statement: PRINTF LPAR HEXNUM . RPAR
+
+    RPAR  сдвиг, и переход в состояние 27
+
+    RPAR      [вывод с использованием правила 12 (prim_expr)]
+    $default  вывод с использованием правила 12 (prim_expr)
+
+
+Состояние 19
+
+   11 prim_expr: IDENT .  [PLUS, MINUS, TIMES, SLASH, RPAR]
+   17 print_statement: PRINTF LPAR IDENT . RPAR
+
+    RPAR  сдвиг, и переход в состояние 28
+
+    RPAR      [вывод с использованием правила 11 (prim_expr)]
+    $default  вывод с использованием правила 11 (prim_expr)
+
+
+Состояние 20
+
+   14 print_statement: PRINTF LPAR LITERAL . RPAR
+
+    RPAR  сдвиг, и переход в состояние 29
+
+
+Состояние 21
+
+   16 print_statement: PRINTF LPAR expr_cmp . RPAR
+
+    RPAR  сдвиг, и переход в состояние 30
+
+
+Состояние 22
+
+   13 prim_expr: LPAR expr_cmp . RPAR
+
+    RPAR  сдвиг, и переход в состояние 31
+
+
+Состояние 23
+
+    6 expr_cmp: prim_expr PLUS . prim_expr
+   11 prim_expr: . IDENT
+   12          | . HEXNUM
+   13          | . LPAR expr_cmp RPAR
+
+    LPAR    сдвиг, и переход в состояние 13
+    HEXNUM  сдвиг, и переход в состояние 14
+    IDENT   сдвиг, и переход в состояние 15
+
+    prim_expr  переход в состояние 32
+
+
+Состояние 24
+
+    7 expr_cmp: prim_expr MINUS . prim_expr
+   11 prim_expr: . IDENT
+   12          | . HEXNUM
+   13          | . LPAR expr_cmp RPAR
+
+    LPAR    сдвиг, и переход в состояние 13
+    HEXNUM  сдвиг, и переход в состояние 14
+    IDENT   сдвиг, и переход в состояние 15
+
+    prim_expr  переход в состояние 33
+
+
+Состояние 25
+
+    8 expr_cmp: prim_expr TIMES . prim_expr
+   11 prim_expr: . IDENT
+   12          | . HEXNUM
+   13          | . LPAR expr_cmp RPAR
+
+    LPAR    сдвиг, и переход в состояние 13
+    HEXNUM  сдвиг, и переход в состояние 14
+    IDENT   сдвиг, и переход в состояние 15
+
+    prim_expr  переход в состояние 34
+
+
+Состояние 26
+
+    9 expr_cmp: prim_expr SLASH . prim_expr
+   11 prim_expr: . IDENT
+   12          | . HEXNUM
+   13          | . LPAR expr_cmp RPAR
+
+    LPAR    сдвиг, и переход в состояние 13
+    HEXNUM  сдвиг, и переход в состояние 14
+    IDENT   сдвиг, и переход в состояние 15
+
+    prim_expr  переход в состояние 35
+
+
+Состояние 27
+
+   15 print_statement: PRINTF LPAR HEXNUM RPAR .
+
+    $default  вывод с использованием правила 15 (print_statement)
+
+
+Состояние 28
+
+   17 print_statement: PRINTF LPAR IDENT RPAR .
+
+    $default  вывод с использованием правила 17 (print_statement)
+
+
+Состояние 29
+
+   14 print_statement: PRINTF LPAR LITERAL RPAR .
+
+    $default  вывод с использованием правила 14 (print_statement)
+
+
+Состояние 30
+
+   16 print_statement: PRINTF LPAR expr_cmp RPAR .
+
+    $default  вывод с использованием правила 16 (print_statement)
+
+
+Состояние 31
+
+   13 prim_expr: LPAR expr_cmp RPAR .
+
+    $default  вывод с использованием правила 13 (prim_expr)
+
+
+Состояние 32
+
+    6 expr_cmp: prim_expr PLUS prim_expr .
+
+    $default  вывод с использованием правила 6 (expr_cmp)
+
+
+Состояние 33
+
+    7 expr_cmp: prim_expr MINUS prim_expr .
+
+    $default  вывод с использованием правила 7 (expr_cmp)
+
+
+Состояние 34
+
+    8 expr_cmp: prim_expr TIMES prim_expr .
+
+    $default  вывод с использованием правила 8 (expr_cmp)
+
+
+Состояние 35
+
+    9 expr_cmp: prim_expr SLASH prim_expr .
+
+    $default  вывод с использованием правила 9 (expr_cmp)
