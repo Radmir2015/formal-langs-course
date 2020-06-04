@@ -320,7 +320,7 @@ swap:
     mov [ibx], temp;
 ```
 
-Verbose = false (you can watch the elements swap)
+Verbose = true (you can watch the elements swap)
 ```python
 assember-emulator-antlr> python .\pseudo.py sort.asm
 start_memory {'input': [5, -99, 2123, 0, -444, 3], 'flags': {'equal': False, 'greater': False}, 'labels': {'cycle': [<syntaxParser.syntaxParser.BlockContext object at 0x02DED1D0>], 'iter': [<syntaxParser.syntaxParser.BlockContext object at 0x02DFEB90>], 'end': [<syntaxParser.syntaxParser.BlockContext object at 0x02DEFB70>], 'assign': [<syntaxParser.syntaxParser.BlockContext object at 0x02DEF210>], 'swap': [<syntaxParser.syntaxParser.BlockContext object at 0x02DEF7D0>]}, 'vars': {}}
