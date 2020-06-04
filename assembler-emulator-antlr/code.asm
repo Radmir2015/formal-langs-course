@@ -10,7 +10,4 @@ cycle:
 end:
     PRINT A;
     ret;
-
-pe: PRINT 123; JE end;
-
-pp: PRINT 234;
+    

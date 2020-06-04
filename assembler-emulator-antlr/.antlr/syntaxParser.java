@@ -1,4 +1,4 @@
-// Generated from d:\Документы\Python\emul\syntax.g4 by ANTLR 4.7.1
+// Generated from d:\Документы\Задания от ВУЗа\3 курс\1 семестр\ТАиФЯ\assembler-emulator-antlr\syntax.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
