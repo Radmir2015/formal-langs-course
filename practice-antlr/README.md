@@ -89,7 +89,7 @@ print not (1 xor 0) and 1;
 ![GUI First example](java/antlr4_parse_tree_1(crop).png)
 In this case you get all lexemes of logical values (atoms, operators, parentheses) under one name - the token logExpr. This helps to take a smaller place in the parse tree and the syntax file (*.g4*), but looks less structured and has no descriptive names for the lexeme.
 
-**Parse tree (part) for the example** (with [MyVisitor_old.py](MyVisitor_old.py) and [syntax.g4](syntax.g4) (commented part):
+**Parse tree (part) for the example** (with [MyVisitor_old.py](MyVisitor_old.py) and [syntax.g4](syntax.g4) (commented part)):
 
 ![GUI Second example](java/antlr4_parse_tree.png)
 Here you get more precise token names (lexems), but they take up more space in parse tree.
