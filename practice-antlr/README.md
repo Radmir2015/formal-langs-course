@@ -68,18 +68,7 @@ javac -cp "*" syntax*.java
 java -cp .;antlr-4.7.2-complete.jar org.antlr.v4.gui.TestRig syntax program -tree -gui prog.pr
 ```
 
-First program example (code from the problem part):
-```pascal
-x := 1;
-y := not y;
-print y;
-z := (x or y) and not 0;
-print z;
-```
-Parse tree for the first example:
-
-![GUI First example](java/antlr4_parse_tree_1(crop).png)
-Second program example ([prog.pr](prog.pr)):
+**Program example** ([prog.pr](prog.pr)):
 ```pascal
 // prog.pr
 x := 1;
@@ -94,6 +83,13 @@ print not 1 xor 0 and 1;
 print (not 1 xor 0) and 1;
 print not (1 xor 0) and 1;
 ```
-Parse tree for the second example:
+
+**Full parse tree for the example** (with [MyVisitor.py](MyVisitor.py) and [syntax.g4](syntax.g4) as it is):
+
+![GUI First example](java/antlr4_parse_tree_1(crop).png)
+In this case you get all lexemes of logical values (atoms, operators, parentheses) under one name - the token logExpr. This helps to take a smaller place in the parse tree and the syntax file (*.g4*), but looks less structured and has no descriptive names for the lexeme.
+
+**Parse tree (part) for the example** (with [MyVisitor_old.py](MyVisitor_old.py) and [syntax.g4](syntax.g4) (commented part):
 
 ![GUI Second example](java/antlr4_parse_tree.png)
+Here you get more precise token names (lexems), but they take up more space in parse tree.
